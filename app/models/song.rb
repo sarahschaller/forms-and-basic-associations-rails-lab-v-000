@@ -8,12 +8,16 @@ class Song < ActiveRecord::Base
   end
 
   def artist_name
-    self.artist.name if self.artist 
+    self.artist.name if self.artist
   end
 
   def genre_name=(name)
     self.genre = Genre.find_or_create_by(name: name)
   end
+
+  def genre_name
+    self.genre.name if self.genre
+  end 
 
   def note_contents(contents)
     contents.each do |content|
