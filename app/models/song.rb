@@ -17,7 +17,7 @@ class Song < ActiveRecord::Base
 
   def genre_name
     self.genre.name if self.genre
-  end 
+  end
 
   def note_contents(contents)
     contents.each do |content|
@@ -25,6 +25,12 @@ class Song < ActiveRecord::Base
         note = Note.find_or_create_by(content: content)
         self.notes << note
       end
+    end
+  end
+
+  def note_contents
+    self.notes.collect do |note|
+      note.content
     end
   end
 end
